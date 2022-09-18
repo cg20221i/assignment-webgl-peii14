@@ -21,7 +21,10 @@
       gl.clearColor(0, 0, 0, 1);
       gl.clear(gl.COLOR_BUFFER_BIT);
       NRP();
-      Name();
+      Name('A',0.0);
+      Name('N',0.25)
+      Name('N2',0.25)
+    //   Name('N3',0.25)
     }
   
     function NRP() {
@@ -58,12 +61,54 @@
             top[0], l2[3],
             top[2] , l2[3]
         ]
+        let topL = [
+             0.0 + spacer, 0.25, 
+        ]
+        let topR = [
+            0.15 + spacer, 0.25, 
+       ]
+        let midTop =[
+            top[2] - 0.075, top[1]
+        ]
+        let bottomR = [
+            top[2] , l2[3]
+        ]
+        let bottomL = [
+            top[0], l2[3],
+        ]
+        let midBottom = [
+            top[0] + 0.075, l2[3],
+        ]
+        let midL = [
+            top[0] , top[3] - 0.2 
+        ]
+        let midR = [
+            top[2], l1[3]
+        ]
+        let spcTopMid = [
+            top[2] - 0.1, top[1]
+        ]
+        let spcBottomMid = [
+            top[2] - 0.1, l2[3]
+        ]
+
         let result
         if (number == 0){
             result = top.concat(l1,l2 ,r2 ,r1 ,bottom)
         }else if (number == 2 ){
             result = top.concat(r1,mid,l2,bottom)
+        }else if (number == 'A'){
+            result = midTop.concat(r2,midTop,l2, mid)
+        }else if (number == 'N'){
+            result = bottomL.concat(topL,spcTopMid, spcBottomMid)
         }
+        else if (number == 'N2'){
+            result = topR.concat(midTop, bottomR)
+            
+        }
+        // else if (number == 'N3'){
+        //     result = bottomR.concat(midTop,topR)
+        // }
     
         return result
     }
@@ -94,13 +139,13 @@
         return n;
     }
   
-    function Name() {
-        var n = initTriangleBuffers();
-        gl.drawArrays(gl.TRIANGLES, 0, n);
+    function Name(letter, spacer) {
+        var n = initTriangleBuffers(letter,spacer);
+        gl.drawArrays(gl.TRIANGLE_FAN, 0, n);
     }
   
-    function initTriangleBuffers() {
-        var tmp = eightBit(0.0,0)
+    function initTriangleBuffers(letter, spacer) {
+        var tmp = eightBit(spacer,letter)
         var vertices = new Float32Array(tmp);
         var n = vertices.length/2;
     
