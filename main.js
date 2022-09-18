@@ -3,7 +3,7 @@ function main() {
     let gl = canvas.getContext("webgl");
 
 
-    let vertices = bitzz();
+    let vertices = eightBit();
     
     var buffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
@@ -47,7 +47,7 @@ function main() {
     gl.drawArrays(gl.LINES, 0, vertices.length / 2);
 }
 
-function bitzz(){
+function eightBit(){
     let top = [
         0.0, 0.0, 
         0.2, 0.0, 
