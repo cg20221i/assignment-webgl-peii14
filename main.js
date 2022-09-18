@@ -3,7 +3,8 @@ function main() {
     let gl = canvas.getContext("webgl");
 
 
-    let vertices = eightBit();
+    let vertices = eightBit(-0.5, 0);
+    vertices = vertices.concat(eightBit(-0.25, 2))
     
     var buffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
@@ -47,10 +48,10 @@ function main() {
     gl.drawArrays(gl.LINES, 0, vertices.length / 2);
 }
 
-function eightBit(){
+function eightBit(spacer , number){
     let top = [
-        0.0, 0.0, 
-        0.2, 0.0, 
+        0.0 + spacer, 0.25, 
+        0.2 + spacer, 0.25, 
     ];
     let l1 = [
         top[0] ,top[1],
@@ -68,12 +69,21 @@ function eightBit(){
         top[2], r1[3],
         top[2], l2[3] 
     ]
+    let mid = [
+        l1[2],l1[3],
+        r1[2], r1[3]
+    ]
     let bottom = [
         top[0], l2[3],
         top[2] , l2[3]
     ]
+    let result
+    if (number == 0){
+        result = top.concat( l1,l2 ,r2 ,r1 ,bottom)
+    }else if (number == 2 ){
+        result = top.concat( r1,mid,l2,bottom)
+    }
 
-    result = top.concat(l1 , l2)
 
     return result
 
