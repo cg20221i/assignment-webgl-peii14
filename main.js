@@ -3,16 +3,12 @@ function main() {
     let gl = canvas.getContext("webgl");
 
 
-    let vertices = [
-        0.5, 0.5, 
-        0.0, 0.0, 
-        -0.5, 0.5
-    ];
-
+    let vertices = bitzz();
     
     var buffer = gl.createBuffer();
     gl.bindBuffer(gl.ARRAY_BUFFER, buffer);
     gl.bufferData(gl.ARRAY_BUFFER, new Float32Array(vertices), gl.STATIC_DRAW);
+    
 
     // VERTEX SHADER
     let vertexShaderCode = `
@@ -48,10 +44,38 @@ function main() {
 
     gl.clearColor(1.0, 0.5,   0.5,  1.0);
     gl.clear(gl.COLOR_BUFFER_BIT);
-    gl.drawArrays(gl.LINE_STRIP, 0, 3);
+    gl.drawArrays(gl.LINES, 0, vertices.length / 2);
 }
 
-function bitzz(number){
-    console.log("duar");
+function bitzz(){
+    let top = [
+        0.0, 0.0, 
+        0.2, 0.0, 
+    ];
+    let l1 = [
+        top[0] ,top[1],
+        top[0] , top[3] - 0.2 ,
+    ]
+    let l2 = [
+        top[0] , l1[3],
+        top[0] , l1[3] - 0.2 ,
+    ]
+    let r1 = [
+        top[2],top[3],
+        top[2], l1[3]
+    ]
+    let r2 = [
+        top[2], r1[3],
+        top[2], l2[3] 
+    ]
+    let bottom = [
+        top[0], l2[3],
+        top[2] , l2[3]
+    ]
+
+    result = top.concat(l1 , l2)
+
+    return result
+
 
 }
