@@ -18,12 +18,12 @@
     }
 
     function draw() {
-      gl.clearColor(0, 0, 0, 1);
+      gl.clearColor(0.22, 0.29, 0.22, 1);
       gl.clear(gl.COLOR_BUFFER_BIT);
       NRP();
       Name('A',0.0);
       Name('N',0.25)
-      Name('N2',0.25)
+      Name('N2',0.24)
     //   Name('N3',0.25)
     }
   
