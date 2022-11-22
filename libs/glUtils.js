@@ -1,15 +1,15 @@
 (function(global){
 
-    var glUtils = {
+    let glUtils = {
       VERSION : '0.0.4',
       checkWebGL: function(canvas) {
         /**
          * Check if WebGL is available.
          **/
         var contexts = ["webgl", "experimental-webgl", "webkit-3d", "moz-webgl"], gl;
-        for (var i=0; i < contexts.length; i++) {
+        for (const element of contexts) {
           try {
-            gl = canvas.getContext(contexts[i]);
+            gl = canvas.getContext(element);
           } catch(e) {}
           if (gl) {
             break;
