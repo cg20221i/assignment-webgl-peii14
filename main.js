@@ -1,6 +1,7 @@
 function main() {
     var canvas = document.getElementById("myCanvas");
     var gl = canvas.getContext("webgl");
+	var cube_box = 24 * 4;
 
     var vertices = [
         // Face A       // Red      // Surface orientation
@@ -46,6 +47,56 @@ function main() {
      
         
     ];
+
+    var box_center = [0.0, 0.0, 0.0];
+	var box = [
+		// cube light
+		-0.1,  0.1, 0.1, ...white, ...zn, //0
+		0.1,  0.1, 0.1, ...white, ...zn, //1
+		0.1, -0.1, 0.1, ...white, ...zn, //2
+		-0.1, -0.1, 0.1, ...white, ...zn, //3
+
+		-0.1,  0.1, -0.1, ...white, ...zp, //4
+		0.1,  0.1, -0.1, ...white, ...zp, //5
+		0.1, -0.1, -0.1, ...white, ...zp, //6
+		-0.1, -0.1, -0.1, ...white, ...zp, //7
+  
+		0.1,  0.1, 0.1, ...white, ...xn, //8
+		0.1, -0.1, 0.1, ...white, ...xn, //9
+		0.1, -0.1, -0.1, ...white, ...xn, //11
+		0.1,  0.1, -0.1, ...white, ...xn, //10
+		
+		-0.1,  0.1, 0.1, ...white, ...xp, //12
+		-0.1,  0.1, -0.1, ...white, ...xp, //13
+		-0.1, -0.1, -0.1, ...white, ...xp, //14
+		-0.1, -0.1, 0.1, ...white, ...xp, //15
+		
+		-0.1,  0.1, 0.1, ...white, ...yn, //16
+		0.1,  0.1, 0.1, ...white, ...yn, //17
+		0.1,  0.1, -0.1, ...white, ...yn, //18
+		-0.1,  0.1, -0.1, ...white, ...yn, //19
+		
+		-0.1, -0.1, 0.1, ...white, ...yp, //20
+		0.1, -0.1, 0.1, ...white, ...yp, //21
+		0.1, -0.1, -0.1, ...white, ...yp, //22
+		-0.1, -0.1, -0.1, ...white, ...yp, //23
+
+
+		0 + cube_box, 1 + cube_box, 2 + cube_box,     0 + cube_box, 2 + cube_box, 3 + cube_box,     // Face A
+		4 + cube_box, 5 + cube_box, 6 + cube_box,     4 + cube_box, 6 + cube_box, 7 + cube_box,     // Face B
+		8 + cube_box, 9 + cube_box, 10 + cube_box,    8 + cube_box, 10 + cube_box, 11 + cube_box,   // Face C
+		12 + cube_box, 13 + cube_box, 14 + cube_box,  12 + cube_box, 14 + cube_box, 15 + cube_box,  // Face D
+		16 + cube_box, 17 + cube_box, 18 + cube_box,  16 + cube_box, 18 + cube_box, 19 + cube_box,  // Face E
+		20 + cube_box, 21 + cube_box, 22 + cube_box,  20 + cube_box, 22 + cube_box, 23 + cube_box,  // Face F 
+	];
+	
+	for (var it = 0; it < box.length; it += 9) {
+		box[it + 0] += box_center[0];
+		box[it + 1] += box_center[1];
+		box[it + 2] += box_center[2];
+	}
+	vertices.push(...box);
+	// indices.push(...box_index);
 
     // Create a linked-list for storing the vertices data in the GPU realm
     var buffer = gl.createBuffer();
