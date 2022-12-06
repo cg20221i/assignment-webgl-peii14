@@ -4,18 +4,13 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Assignment 1</title>
+    <title>Learning WebGL</title>
 </head>
-<body >
-    <canvas id="myCanvas">
+<body onload="main()">
+    <canvas id="myCanvas" width="700" height="700">
         Your browser does not support WebGL
     </canvas>
-    <script name="shader" data-src="shaders/vertex.glsl" data-type="vertex" data-version="v1"></script>
-    <script name="shader" data-src="shaders/fragment.glsl" data-type="fragment" data-version="v1"></script>
-
-    <script type="text/javascript" src="vendor/signals.js"></script>
-    <script type="text/javascript" src="libs/glUtils.js"></script>
+    <script src="glMatrix.js"></script>
     <script src="main.js"></script>
-
 </body>
 </html>
